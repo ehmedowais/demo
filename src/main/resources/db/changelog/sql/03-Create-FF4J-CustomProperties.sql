@@ -1,0 +1,16 @@
+CREATE TABLE `ff4j_custom_properties` (
+  `PROPERTY_ID` varchar(100) NOT NULL,
+  `CLAZZ` varchar(255) NOT NULL,
+  `CURRENTVALUE` varchar(255) DEFAULT NULL,
+  `FIXEDVALUES` varchar(1000) DEFAULT NULL,
+  `DESCRIPTION` varchar(1000) DEFAULT NULL,
+  `FEAT_UID` varchar(100) NOT NULL,
+  PRIMARY KEY (`PROPERTY_ID`,`FEAT_UID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+/*
+
+
+
+*/
