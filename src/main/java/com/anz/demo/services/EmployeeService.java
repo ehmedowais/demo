@@ -19,5 +19,7 @@ public class EmployeeService {
 
     }
 
-
+    public List<Employee> getEmployeesByFirstOrLastName(String fName, String lName) {
+        return employeeRepository.getEmployeesByNames(fName, lName);
+    }
 }
