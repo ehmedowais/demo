@@ -22,4 +22,12 @@ public class EmployeeService {
     public List<Employee> getEmployeesByFirstOrLastName(String fName, String lName) {
         return employeeRepository.getEmployeesByNames(fName, lName);
     }
+
+    public List<Employee> getSubOrdinates(int manager) {
+        return employeeRepository.findSubordinatesOfManage(manager);
+    }
+
+    public Employee getEmployeeById(int id) {
+        return employeeRepository.getById(id);
+    }
 }

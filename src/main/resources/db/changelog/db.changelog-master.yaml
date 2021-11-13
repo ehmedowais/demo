@@ -25,44 +25,44 @@ databaseChangeLog:
                   relativeToChangelogFile: true
                   splitStatements: true
                   stripComments: true
-  - changeSet:
-          id: 6
-          author: ahmedm
-          changes:
-            - sqlFile:
-                dbms: mysql
-                encoding: utf8
-                endDelimiter: \nGO
-                path: sql/03-Create-FF4J-CustomProperties.sql
-                relativeToChangelogFile: true
-                splitStatements: true
-                stripComments: true
-            - sqlFile:
-                dbms: mysql
-                encoding: utf8
-                endDelimiter: \nGO
-                path: sql/04-Create-FF4J-Features.sql
-                relativeToChangelogFile: true
-                splitStatements: true
-                stripComments: true
-            - sqlFile:
-                dbms: mysql
-                encoding: utf8
-                endDelimiter: \nGO
-                path: sql/05-Create-FF4J-Roles.sql
-                relativeToChangelogFile: true
-                splitStatements: true
-                stripComments: true
-
-  - changeSet:
-      id: 7
-      author: ahmedm
-      changes:
-        - sqlFile:
-            dbms: mysql
-            encoding: utf8
-            endDelimiter: \nGO
-            path: sql/06-Create-FF4J-Properties.sql
-            relativeToChangelogFile: true
-            splitStatements: true
-            stripComments: true
+#  - changeSet:
+#          id: 6
+#          author: ahmedm
+#          changes:
+#            - sqlFile:
+#                dbms: mysql
+#                encoding: utf8
+#                endDelimiter: \nGO
+#                path: sql/03-Create-FF4J-CustomProperties.sql
+#                relativeToChangelogFile: true
+#                splitStatements: true
+#                stripComments: true
+#            - sqlFile:
+#                dbms: mysql
+#                encoding: utf8
+#                endDelimiter: \nGO
+#                path: sql/04-Create-FF4J-Features.sql
+#                relativeToChangelogFile: true
+#                splitStatements: true
+#                stripComments: true
+#            - sqlFile:
+#                dbms: mysql
+#                encoding: utf8
+#                endDelimiter: \nGO
+#                path: sql/05-Create-FF4J-Roles.sql
+#                relativeToChangelogFile: true
+#                splitStatements: true
+#                stripComments: true
+#
+#  - changeSet:
+#      id: 7
+#      author: ahmedm
+#      changes:
+#        - sqlFile:
+#            dbms: mysql
+#            encoding: utf8
+#            endDelimiter: \nGO
+#            path: sql/06-Create-FF4J-Properties.sql
+#            relativeToChangelogFile: true
+#            splitStatements: true
+#            stripComments: true

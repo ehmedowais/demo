@@ -33,10 +33,14 @@ public class DemoController {
             @RequestParam(value = "lastName", required = false) String lastName) {
         EmployeeResponseDTO dto = new EmployeeResponseDTO();
         if(firstName == null && lastName == null ) {
-            return new ResponseEntity<EmployeeResponseDTO>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         dto.setEmployees(employeeService.getEmployeesByFirstOrLastName(firstName,lastName));
         return ResponseEntity.ok(dto);
+    }
+    @GetMapping("getSubOrdinates/{id}")
+    public ResponseEntity<List<Employee>> getSubOrdinates(@PathVariable(name="id") int id) {
+       return ResponseEntity.ok(employeeService.getSubOrdinates(id));
     }
     @PostMapping("create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee emp) {

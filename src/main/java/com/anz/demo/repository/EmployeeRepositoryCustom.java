@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface EmployeeRepositoryCustom {
     List<Employee> getEmployeesByNames(String fName, String lName);
+
+    
 }
