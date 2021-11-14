@@ -1,3 +1,4 @@
+/*
 CREATE TABLE `employee` (
   `ID` int NOT NULL,
   `FIRST_NAME` varchar(200) NOT NULL,
@@ -6,4 +7,12 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`ID`),
   KEY `FK_MANAGER_idx` (`MANAGER`),
   CONSTRAINT `FK_MANAGER` FOREIGN KEY (`MANAGER`) REFERENCES `employee` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+*/
+CREATE TABLE `employee` (
+  `ID` int NOT NULL,
+  `FIRST_NAME` varchar(200) NOT NULL,
+  `LAST_NAME` varchar(20) NOT NULL,
+  `MANAGER` int DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

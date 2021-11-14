@@ -35,5 +35,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>, Em
                     "SELECT * FROM cte_org order by id;"
     )
     List<Employee> findSubordinatesOfManage(int manager);
+    List<Employee> findAllByManager(Employee e);
 
 }

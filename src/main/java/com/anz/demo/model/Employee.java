@@ -1,10 +1,11 @@
 package com.anz.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name="employee")
@@ -18,14 +19,14 @@ public class Employee {
     @Column(name="LAST_NAME")
     private String lastName;
 
-    @ManyToOne(cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinColumn(name="manager")
-    @JsonIgnoreProperties("subordinates")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="MANAGER",insertable = false, updatable = false)
+    @JsonBackReference
     private Employee manager;
 
-    @OneToMany(mappedBy="manager", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("manager")
-    private Set<Employee> subordinates = new HashSet<>();
+    @OneToMany(mappedBy= "manager", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Collection<Employee> subordinates = new HashSet<>();
 
     public int getId() {
         return id;
@@ -51,21 +52,20 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public void setManager(Employee manager) { this.manager = manager;}
+    public Collection<Employee> getSubordinates() {
+        return subordinates;
+    }
+
+    public void setSubordinates(Collection<Employee> subordinates) {
+        this.subordinates = subordinates;
+    }
+
+    public void setManager(Employee managerOfEmployee) { this.manager = managerOfEmployee;}
 
     public Employee getManager() { return this.manager;}
 
     public Employee() {}
 
-    public Employee(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    public Employee(int id, String firstName, String lastName, Set<Employee> subordinates) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.subordinates = subordinates;
-    }
+
+
 }

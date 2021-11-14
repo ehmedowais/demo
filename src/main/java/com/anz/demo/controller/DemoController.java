@@ -2,6 +2,7 @@ package com.anz.demo.controller;
 
 import com.anz.demo.dto.EmployeeResponseDTO;
 import com.anz.demo.model.Employee;
+import com.anz.demo.repository.EmployeeRepository;
 import com.anz.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,8 @@ import java.util.List;
 public class DemoController {
     @Autowired
     EmployeeService employeeService;
-
+    @Autowired
+    EmployeeRepository employeeRepository;
     @GetMapping("demo")
     public ResponseEntity<String> demoMessge() {
         return ResponseEntity.ok("Hello world");
@@ -40,7 +42,10 @@ public class DemoController {
     }
     @GetMapping("getSubOrdinates/{id}")
     public ResponseEntity<List<Employee>> getSubOrdinates(@PathVariable(name="id") int id) {
-       return ResponseEntity.ok(employeeService.getSubOrdinates(id));
+       return ResponseEntity.ok(
+               employeeRepository.findAllByManager(
+                       employeeRepository.getById(id).getManager()));
+
     }
     @PostMapping("create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee emp) {
