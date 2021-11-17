@@ -19,6 +19,10 @@ public class Employee {
     @Column(name="LAST_NAME")
     private String lastName;
 
+    @OneToOne(targetEntity = Department.class,fetch = FetchType.LAZY)
+    @JoinColumn(name="department_id")
+    Department department;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MANAGER",insertable = false, updatable = false)
     @JsonBackReference
@@ -66,6 +70,9 @@ public class Employee {
 
     public Employee() {}
 
+    public Department getDepartment() {return this.department;}
 
-
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
