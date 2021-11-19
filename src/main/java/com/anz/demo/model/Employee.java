@@ -1,6 +1,7 @@
 package com.anz.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Employee {
 
     @OneToOne(targetEntity = Department.class,fetch = FetchType.LAZY)
     @JoinColumn(name="department_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)

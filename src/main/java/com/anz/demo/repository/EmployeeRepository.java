@@ -1,5 +1,6 @@
 package com.anz.demo.repository;
 
+import com.anz.demo.model.Department;
 import com.anz.demo.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -36,5 +37,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>, Em
     )
     List<Employee> findSubordinatesOfManage(int manager);
     List<Employee> findAllByManager(Employee e);
+    Employee findOneByFirstNameAndLastNameAndDepartment(String firstName, String lastName, Department dept);
 
 }

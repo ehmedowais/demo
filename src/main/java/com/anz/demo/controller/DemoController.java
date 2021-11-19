@@ -47,6 +47,11 @@ public class DemoController {
                        employeeRepository.getById(id).getManager()));
 
     }
+    @GetMapping("getEmployeeByDeptAndFullName")
+    public Employee getEmployeeByDeptAndFullName(@RequestBody Employee emp) {
+        return employeeRepository.findOneByFirstNameAndLastNameAndDepartment(emp.getFirstName(),
+                emp.getLastName(),emp.getDepartment());
+    }
     @PostMapping("create")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee emp) {
         return ResponseEntity.ok(employeeService.crateEmployee(emp));
