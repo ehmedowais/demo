@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-        id: 4
+        id: 1
         author: ahmedm
         changes:
             - sqlFile:
@@ -9,22 +9,34 @@ databaseChangeLog:
                 endDelimiter: \nGO
                 path: sql/01-Create-Tables.sql
                 relativeToChangelogFile: true
-                splitStatements: true
                 stripComments: true
-
+                stevedonie: create-multiple-tables
+                splitStatements: true
+  - changeSet:
+      id: 2
+      author: ahmedm
+      changes:
+        - sqlFile:
+            dbms: mysql
+            encoding: utf8
+            path: sql/15-Create-Employee-Table.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+            endDelimiter: ;
 
   - changeSet:
-          id: 5
+          id: 3
           author: ahmedm
           changes:
               - sqlFile:
                   dbms: mysql
                   encoding: utf8
-                  endDelimiter: \nGO
                   path: sql/02-Insert-Test-Data.sql
                   relativeToChangelogFile: true
                   splitStatements: true
                   stripComments: true
+                  endDelimiter: ;
 #  - changeSet:
 #          id: 6
 #          author: ahmedm
