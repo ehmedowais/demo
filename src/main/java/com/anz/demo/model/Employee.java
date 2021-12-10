@@ -3,16 +3,27 @@ package com.anz.demo.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="employee")
+@ToString
 public class Employee {
     @Id
-    //@GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name="ID")
     private int id;
     @Column(name="FIRST_NAME")
@@ -20,9 +31,10 @@ public class Employee {
     @Column(name="LAST_NAME")
     private String lastName;
 
-    @OneToOne(targetEntity = Department.class,fetch = FetchType.LAZY)
-    @JoinColumn(name="department_id")
+    @OneToOne(targetEntity = Department.class,fetch = FetchType.LAZY )
+    @JoinColumn(name="department_id",updatable = false, insertable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @NotFound(action = NotFoundAction.IGNORE)
     Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,47 +46,8 @@ public class Employee {
     @JsonManagedReference
     private Collection<Employee> subordinates = new HashSet<>();
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Collection<Employee> getSubordinates() {
-        return subordinates;
-    }
-
-    public void setSubordinates(Collection<Employee> subordinates) {
-        this.subordinates = subordinates;
-    }
-
-    public void setManager(Employee managerOfEmployee) { this.manager = managerOfEmployee;}
-
-    public Employee getManager() { return this.manager;}
-
-    public Employee() {}
-
-    public Department getDepartment() {return this.department;}
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+    @OneToMany(targetEntity = Skill.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="es_fk",referencedColumnName = "id")
+    @NotFound(action = NotFoundAction.IGNORE)
+    private List<Skill> skills;
 }
