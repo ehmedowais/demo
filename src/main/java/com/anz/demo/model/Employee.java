@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.intellij.lang.annotations.Pattern;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Employee {
     @Column(name="ID")
     private int id;
     @Column(name="FIRST_NAME")
+    @Size(min = 1, max = 5, message = "Invalid First Name Length 5 allowed")
     private String firstName;
     @Column(name="LAST_NAME")
     private String lastName;

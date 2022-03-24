@@ -7,11 +7,14 @@ import com.anz.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@Validated
 @RequestMapping("employee")
 public class DemoController {
     @Autowired
@@ -53,7 +56,7 @@ public class DemoController {
                 emp.getLastName(),emp.getDepartment());
     }
     @PostMapping("create")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee emp) {
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee emp) {
         return ResponseEntity.ok(employeeService.crateEmployee(emp));
     }
 
